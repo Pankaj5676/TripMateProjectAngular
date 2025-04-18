@@ -1,0 +1,70 @@
+<header class="dashboard-header">
+    <div class="logo">TripMate</div>
+    <nav class="nav-links">
+      <!-- <a routerLink="/dashboard" routerLinkActive="active">My Trips</a>
+      <a routerLink="/add-trip" routerLinkActive="active">Add Trip</a> -->
+    </nav> 
+    <div class="user-info">
+        <button routerLink="/dashboard"  class="back-btn">Back</button>
+      </div>
+</header>
+<div class="manage-trip-container">
+    <h2>Add Member to Trip</h2>
+    <div class="button-center">
+      <button class="click-here" (click)="goToAddMembers()">Click here</button>
+    </div>  
+</div>
+<!-- <div class="trip-members-container"> -->
+  <h2>Manage Trip Members</h2>
+
+  <div *ngIf="members.length === 0" class="no-members">
+    No members found.
+  </div>
+
+  <table *ngIf="members.length > 0" class="members-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Total Expense</th>
+        <th>Amount</th>
+        <th>Add</th>
+        <!-- <th>Subtract</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let member of members">
+        <td>{{ member.name }}</td>
+        <td>{{ member.phone }}</td>
+        <td>
+          <input [value]="member.totalSpend" disabled />
+        </td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="expenseInputs[member.id]"
+            placeholder="Amount"
+          />
+        </td>
+        <td>
+          <button (click)="updateExpense(member.id, 'add')">Add</button>
+          <!-- updateExpense(member.id, 'add') -->
+        </td>
+        <!-- <td>
+          <button (click)="updateExpense()">Subtract</button>  
+        </td> -->
+        <!-- updateExpense(member.id, 'subtract') -->
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <div class="summary">
+    <strong>Total Expense:₹{{totalExpense}} </strong> 
+  </div>
+
+  <div class="close-trip-container">
+    <button (click)="closeTrip()" class="trip-close-btn">Close Trip</button>
+  </div>
+<!-- </div> -->

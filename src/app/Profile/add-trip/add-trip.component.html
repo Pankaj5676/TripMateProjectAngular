@@ -1,0 +1,30 @@
+<header class="dashboard-header">
+    <div class="logo">TripMate</div>
+  
+    <nav class="nav-links">
+      <a routerLink="/dashboard" routerLinkActive="active">My Trips</a>
+      <a routerLink="/add-trip" routerLinkActive="active">Add Trip</a>
+    </nav>
+
+    <div class="user-info">
+        <button routerLink="/dashboard" class="back-btn">Back</button>
+      </div>
+  </header>
+  <div class="dashboard-wrapper">
+    <h2 class="title">Create New Trip</h2>
+  
+    <form [formGroup]="tripForm" (ngSubmit)="createTrip()" class="trip-form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Trip Name</mat-label>
+        <input matInput formControlName="tripName" required>
+        <mat-error *ngIf="tripForm.get('tripName')?.hasError('required')">
+          Trip name is required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="tripForm.invalid">
+        Create Trip
+      </button>
+    </form>
+  </div>
+  

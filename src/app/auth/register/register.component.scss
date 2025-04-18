@@ -1,0 +1,46 @@
+.register-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-header {
+    text-align: center;
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-card-footer {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .footer-text {
+    font-size: 14px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  @media (max-width: 600px) {
+    .register-card {
+      width: 90%;
+      margin: 20px auto;
+    }
+  }
+  

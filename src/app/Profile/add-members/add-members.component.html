@@ -1,0 +1,63 @@
+<header class="dashboard-header">
+    <div class="logo">TripMate</div>
+  
+    <nav class="nav-links">
+      <!-- <a routerLink="/dashboard" routerLinkActive="active">My Trips</a>
+      <a routerLink="/add-trip" routerLinkActive="active">Add Trip</a> -->
+    </nav>
+  
+    <div class="user-info">
+        <button (click)="goback()" class="back-btn">Back</button>
+      </div>
+</header>
+<div class="manage-trip-container">
+    <h2>Add Member to Trip</h2>
+  
+    <form [formGroup]="memberForm" (ngSubmit)="addMember()" class="member-form">
+      <div class="form-grid">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="memberForm.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+          <mat-error *ngIf="memberForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="memberForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone" />
+          <mat-error *ngIf="memberForm.get('phone')?.hasError('required')">
+            Phone is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Total Spend</mat-label>
+          <input matInput type="number" formControlName="totalSpend" />
+          <mat-error *ngIf="memberForm.get('totalSpend')?.hasError('required')">
+            Total spend is required
+          </mat-error>
+          <mat-error *ngIf="memberForm.get('totalSpend')?.hasError('min')">
+            Spend must be at least 1
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-wrapper">
+        <button mat-raised-button color="primary" type="submit" [disabled]="memberForm.invalid">
+          Add Member
+        </button>
+      </div>
+    </form>
+  </div>
