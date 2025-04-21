@@ -8,6 +8,8 @@ import { Member } from '../Class/member';
   providedIn: 'root'
 })
 export class TripService {
+
+
   private apiUrl = 'http://localhost:8080/api/trips';
   private baseUrl = 'http://localhost:8080/api';
 
@@ -23,7 +25,9 @@ export class TripService {
   }
 
   addMemberToTrip(tripId: number, memberData: any): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/members/add/${tripId}`, memberData);
+    return this.http.post(`http://localhost:8080/api/members/add/${tripId}`, memberData,{
+      responseType: 'text' as 'json'
+    });
   }
   
   getMembersByTripId(tripId: number): Observable<Member[]> {
@@ -50,6 +54,16 @@ export class TripService {
         responseType: 'text' as 'json'
       }
     );
+  }
+
+  //localhost:8080/api/trips/delete/1
+  deleteTrip(tripId:number):Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/delete/${tripId}`, { responseType : 'text' as 'json' });
+  }
+  
+  //localhost:8080/api/members/2
+  deleteMember(memId:number):Observable<any>{
+    return this.http.delete<any>(`${this.baseUrl}/members/${memId}`,{ responseType : 'text' as 'json' });
   }
   
 }

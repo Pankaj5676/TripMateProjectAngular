@@ -6,15 +6,16 @@ import { DashboardComponent } from './Profile/dashboard/dashboard.component';
 import { AddTripComponent } from './Profile/add-trip/add-trip.component';
 import { ManageTripComponent } from './Profile/manage-trip/manage-trip.component';
 import { AddMembersComponent } from './Profile/add-members/add-members.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'add-trip', component: AddTripComponent },
-  { path: 'addMember', component:AddMembersComponent },
-  { path: 'manageTrip/:tripId', component: ManageTripComponent },
-  { path: 'addMember/:tripId', component: AddMembersComponent },
+  { path: 'dashboard', component: DashboardComponent ,canActivate: [authGuard]},
+  { path: 'add-trip', component: AddTripComponent,canActivate: [authGuard] },
+  { path: 'addMember', component:AddMembersComponent,canActivate: [authGuard] },
+  { path: 'manageTrip/:tripId', component: ManageTripComponent,canActivate: [authGuard] },
+  { path: 'addMember/:tripId', component: AddMembersComponent,canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

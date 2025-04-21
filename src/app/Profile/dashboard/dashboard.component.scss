@@ -209,6 +209,21 @@
   border-radius: 4px;
 }
 
+.action-btn .delete-btn{
+ background-color: rgb(240, 48, 48);
+ color: white;
+ margin-left: 3px;
+}
+.action-btn .view-btn{
+  background-color: green;
+  color: white;
+}
+
+.action-btn .update-btn{
+  background-color: rgba(255, 255, 0, 0.603);
+  color: black;
+}
+
 .logout-btn:hover {
   background-color: #c0392b;
 }

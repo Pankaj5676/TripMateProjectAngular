@@ -29,6 +29,7 @@
         </strong>
       </p>
 
+      <div class="action-btn">
       <button *ngIf="trip.closed" class="trip-action-btn view-btn" (click)="viewTrip(trip.id)">
         View
       </button>
@@ -36,7 +37,10 @@
       <button *ngIf="!trip.closed" class="trip-action-btn update-btn"  (click)="updateTrip(trip.id)">
         Update
       </button>
-
+      <button  class="delete-btn" (click)="deleteTrip(trip.id) ">
+        Delete
+      </button>
+    </div>
 
     </div>
   </div>

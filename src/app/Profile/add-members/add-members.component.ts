@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, MaxValidator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripService } from '../../Service/trip.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,7 +28,7 @@ export class AddMembersComponent {
       this.memberForm = this.fb.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        phone: ['', Validators.required],
+        phone: ['', [Validators.required,Validators.pattern(/^[0-9]{10}$/)]],
         totalSpend: ['']
       });
 
@@ -53,7 +53,8 @@ export class AddMembersComponent {
           this.router.navigate(['/manageTrip/',this.tripId]);
         },
         (err:any) =>{
-          this.snackBar.open("Error while creating member", 'Close', {
+          console.error(err);
+          this.snackBar.open(err.error, 'Close', {
             duration: 2000,
             panelClass: ['snackbar-success'] 
           });
