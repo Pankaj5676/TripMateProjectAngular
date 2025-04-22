@@ -38,12 +38,7 @@ export class ManageTripComponent implements OnInit {
     this.getTotalExpense();
   }
 
-  loadMembers() {
-    this.tripService.getMembersByTripId(this.tripId).subscribe({
-      next: (data) => (this.members = data),
-      error: (err) => console.error('Error fetching members:', err),
-    });
-  }
+  
 
   updateExpense(memberId: number, type: 'add' | 'subtract') {
     const amount = this.expenseInputs[memberId];
@@ -107,6 +102,13 @@ export class ManageTripComponent implements OnInit {
 
   goToAddMembers() {
     this.router.navigate(['addMember/', this.tripId]);
+  }
+
+  loadMembers() {
+    this.tripService.getMembersByTripId(this.tripId).subscribe({
+      next: (data) => (this.members = data),
+      error: (err) => console.error('Error fetching members:', err),
+    });
   }
 
   deleteMember(memId: number) {

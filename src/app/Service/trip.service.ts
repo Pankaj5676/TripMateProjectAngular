@@ -15,41 +15,41 @@ export class TripService {
 
   constructor(private http: HttpClient) {}
 
-  getTripsByUserId(userId: number): Observable<Trip[]> {
-     return this.http.get<any[]>(`${this.apiUrl}/${userId}/trips`);
+  getTripsByUserId(userId: number): Observable<any> {
+     return this.http.get<any[]>(`${this.baseUrl}/trips/${userId}/trips`);
   }
 
     
   createTrip(payload: { userId: number; tripName: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create`, payload);
+    return this.http.post(`${this.baseUrl}/trips/create`, payload);
   }
 
   addMemberToTrip(tripId: number, memberData: any): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/members/add/${tripId}`, memberData,{
+    return this.http.post(`${this.baseUrl}/members/add/${tripId}`, memberData,{
       responseType: 'text' as 'json'
     });
   }
   
   getMembersByTripId(tripId: number): Observable<Member[]> {
-    return this.http.get<Member[]>(`http://localhost:8080/api/trips/members/${tripId}`);
+    return this.http.get<Member[]>(`${this.baseUrl}/trips/members/${tripId}`);
   } 
   
 
   updateExpense(memberId: number, tripId: number, amount: number, type: string) {
     return this.http.put(
-      `http://localhost:8080/api/members/expense/${tripId}/${memberId}?amount=${amount}&type=${type}`,{}
+      `${this.baseUrl}/members/expense/${tripId}/${memberId}?amount=${amount}&type=${type}`,{}
     );
   }
 
 
   //localhost:8080/api/members/trip/11/total-expense
   getTotalExpenses(tripId: number): Observable<number> {
-    return this.http.get<number>(`http://localhost:8080/api/members/trip/${tripId}/total-expense`);
+    return this.http.get<number>(`${this.baseUrl}/members/trip/${tripId}/total-expense`);
   }
 
   //localhost:8080/api/trips/close/9/10
   closeTrip(userId:number,tripId: number): Observable<string> {
-    return this.http.post<string>(`http://localhost:8080/api/trips/close/${userId}/${tripId}`, {},
+    return this.http.post<string>(`${this.baseUrl}/trips/close/${userId}/${tripId}`, {},
       {
         responseType: 'text' as 'json'
       }
@@ -58,7 +58,7 @@ export class TripService {
 
   //localhost:8080/api/trips/delete/1
   deleteTrip(tripId:number):Observable<any>{
-    return this.http.delete<any>(`${this.apiUrl}/delete/${tripId}`, { responseType : 'text' as 'json' });
+    return this.http.delete<any>(`${this.baseUrl}/trips/delete/${tripId}`, { responseType : 'text' as 'json' });
   }
   
   //localhost:8080/api/members/2
@@ -68,7 +68,7 @@ export class TripService {
 
   //localhost:8080/api/trips/2
   getTripBytripId(tripId:number):Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/${tripId}`)
+    return this.http.get<any>(`${this.baseUrl}/trips/${tripId}`)
   }
   
 }

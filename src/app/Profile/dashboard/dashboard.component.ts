@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-  trips: Trip[] = [];
+ trips: Trip[] = [];
   userId: any = localStorage.getItem('userId');
   userName: any = localStorage.getItem('userName');
 
@@ -20,22 +20,20 @@ export class DashboardComponent implements OnInit {
   constructor(private tripService: TripService, private router: Router, private snackBar: MatSnackBar,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.gettingAllTrips();
-
-
   }
 
   gettingAllTrips() {
     if (this.userId) {
-      this.tripService.getTripsByUserId(this.userId).subscribe({
-        next: (data) => {
+      this.tripService.getTripsByUserId(this.userId).subscribe(
+        (data) => {
           this.trips = data;
         },
-        error: (err) => {
-          console.error('Error fetching trips:', err);
+        (err) => {
+          console.warn("No trips found for this user.");
+          this.trips = [];
         }
-      });
+      );
     }
   }
 
@@ -68,6 +66,8 @@ export class DashboardComponent implements OnInit {
             panelClass: ['snackbar-success']
           });
 
+          //this.members = this.members.filter(member => member.id !== memId);
+          this.trips=this.trips.filter(trip=>trip.id!==id);
           this.gettingAllTrips();
         },
         (err) => {
