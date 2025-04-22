@@ -13,6 +13,7 @@
 
 <!-- Dashboard content -->
 <div class="dashboard-wrapper">
+
   <h2 class="title">This is <span class="username">{{userName}}</span> Trips</h2>
 
   <div *ngIf="trips.length === 0" class="no-trips">
@@ -30,6 +31,7 @@
       </p>
 
       <div class="action-btn">
+        <!-- (click)="viewTrip(trip.id) -->
       <button *ngIf="trip.closed" class="trip-action-btn view-btn" (click)="viewTrip(trip.id)">
         View
       </button>
@@ -41,47 +43,6 @@
         Delete
       </button>
     </div>
-
     </div>
   </div>
 </div>
-
-
-
-
-
-<!-- <header class="dashboard-header">
-    <div class="logo">TripMate</div>
-    
-    <nav class="nav-links">
-      <a routerLink="/dashboard" routerLinkActive="active">My Trips</a>
-      <a routerLink="/add-trip" routerLinkActive="active">Add Trip</a>
-    </nav>
-  
-    <div class="user-info">
-      <button (click)="logout()" class="logout-btn">Logout</button>
-    </div>
-  </header>
-  
-  <div class="dashboard-wrapper">
-    <h2 class="title">My Trips</h2>
-  
-    <div *ngIf="trips.length === 0" class="no-trips">
-      No trips found.
-    </div>
-  
-    <div class="trip-container" *ngFor="let trip of trips">
-      <div class="trip-card">
-        <h3>{{ trip.tripName }}</h3>
-        <p>Status: <strong [ngClass]="{ closed: trip.closed, open: !trip.closed }">{{ trip.closed ? 'Closed' : 'Open' }}</strong></p>
-      </div>
-    </div>
-  </div> -->
-
-
-<!-- <h4>Members</h4>
-        <ul>
-          <li *ngFor="let member of trip.members">
-            {{ member.name }} ({{ member.email }}) - ₹{{ member.totalSpend }}
-          </li>
-        </ul> -->

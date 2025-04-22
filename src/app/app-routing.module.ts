@@ -7,6 +7,7 @@ import { AddTripComponent } from './Profile/add-trip/add-trip.component';
 import { ManageTripComponent } from './Profile/manage-trip/manage-trip.component';
 import { AddMembersComponent } from './Profile/add-members/add-members.component';
 import { authGuard } from './auth/auth.guard';
+import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'addMember', component:AddMembersComponent,canActivate: [authGuard] },
   { path: 'manageTrip/:tripId', component: ManageTripComponent,canActivate: [authGuard] },
   { path: 'addMember/:tripId', component: AddMembersComponent,canActivate: [authGuard] },
+  { path: 'tripSummary/:tripId', component: TripSummaryComponent ,canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

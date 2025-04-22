@@ -65,5 +65,10 @@ export class TripService {
   deleteMember(memId:number):Observable<any>{
     return this.http.delete<any>(`${this.baseUrl}/members/${memId}`,{ responseType : 'text' as 'json' });
   }
+
+  //localhost:8080/api/trips/2
+  getTripBytripId(tripId:number):Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/${tripId}`)
+  }
   
 }

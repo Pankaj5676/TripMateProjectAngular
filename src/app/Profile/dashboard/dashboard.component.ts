@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Trip } from '../../Class/trip';
 import { TripService } from '../../Service/trip.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -11,20 +11,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DashboardComponent implements OnInit {
   trips: Trip[] = [];
-  userId:any = localStorage.getItem('userId');
-   userName:any= localStorage.getItem('userName');
-    
+  userId: any = localStorage.getItem('userId');
+  userName: any = localStorage.getItem('userName');
 
-  constructor(private tripService: TripService,private router:Router,private snackBar: MatSnackBar) {}
+  members: any[] = [];
+
+
+  constructor(private tripService: TripService, private router: Router, private snackBar: MatSnackBar,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+
     this.gettingAllTrips();
 
-    
+
   }
 
-  gettingAllTrips(){
+  gettingAllTrips() {
     if (this.userId) {
       this.tripService.getTripsByUserId(this.userId).subscribe({
         next: (data) => {
@@ -38,29 +40,28 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  logout(){
-      const confirmLogout = window.confirm('Are you sure you want to logout?');
-      
-      if (confirmLogout) {
-        localStorage.clear();
-        this.router.navigate(['/login']);
-      }
+  logout() {
+    const confirmLogout = window.confirm('Are you sure you want to logout?');
+
+    if (confirmLogout) {
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    }
   }
 
 
-  updateTrip(id:number){
-
-    this.router.navigate(['manageTrip',id]);
+  updateTrip(id: number) {
+    this.router.navigate(['manageTrip', id]);
   }
 
-  viewTrip(id:number){
-    
+  viewTrip(id: number) {
+    this.router.navigate(['tripSummary', id]);
   }
 
-  deleteTrip(id:number){
-     if (confirm("trip will delete permanently along with member data...!")){
+  deleteTrip(id: number) {
+    if (confirm("trip will delete permanently along with member data...!")) {
       this.tripService.deleteTrip(id).subscribe(
-        (res)=>{
+        (res) => {
           console.log(res);
           this.snackBar.open(res, 'Close', {
             duration: 2000,
@@ -68,18 +69,17 @@ export class DashboardComponent implements OnInit {
           });
 
           this.gettingAllTrips();
-       },
-       (err)=>{
-        console.log(err);
-        this.snackBar.open(err.error, 'Close', {
-          duration: 2000,
-          panelClass: ['snackbar-danger']
-        });
-       }
-  )
-     }
+        },
+        (err) => {
+          console.log(err);
+          this.snackBar.open(err.error, 'Close', {
+            duration: 2000,
+            panelClass: ['snackbar-danger']
+          });
+        }
+      )
+    }
 
   }
-
 
 }

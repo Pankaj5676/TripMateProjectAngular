@@ -14,7 +14,8 @@ import { DashboardComponent } from './Profile/dashboard/dashboard.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { AddTripComponent } from './Profile/add-trip/add-trip.component';
 import { ManageTripComponent } from './Profile/manage-trip/manage-trip.component';
-import { AddMembersComponent } from './Profile/add-members/add-members.component'
+import { AddMembersComponent } from './Profile/add-members/add-members.component';
+import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddMembersComponent } from './Profile/add-members/add-members.component
     DashboardComponent,
     AddTripComponent,
     ManageTripComponent,
-    AddMembersComponent
+    AddMembersComponent,
+    TripSummaryComponent
   ],
   imports: [
     BrowserModule,

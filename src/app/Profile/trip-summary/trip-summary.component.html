@@ -1,0 +1,36 @@
+<!-- <div class="trip-summary-container">
+    <mat-card class="trip-summary-header">
+      <h2>My {{ tripName }} Trip</h2>
+      <p>Total Expense: ₹{{ totalExpense }}</p>
+      <p>Per Person Contribution: ₹{{ contributionPerPerson }}</p>
+    </mat-card>
+
+    <div class="members-container">
+      <mat-card *ngFor="let member of members" class="member-card">
+        <mat-card-title>{{ member.name }}</mat-card-title>
+        <mat-card-content>
+          <p><strong>Spend:</strong> ₹{{ member.totalSpend }}</p>
+          <p><strong>Status:</strong> {{ member.status }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div> -->
+
+  <!-- View Button --> 
+
+<div class="overlay" *ngIf="showCard" (click)="closeCard()">
+  <div class="popup-card" (click)="$event.stopPropagation()">
+    <h2>{{ tripName }}</h2>
+    <p>Total Expense: ₹{{ totalExpense }}</p>
+    <p>Per Person Contribution: ₹{{ contributionPerPerson }}</p>
+
+    <div *ngFor="let member of members" class="member-info">
+      <p><strong>Name:</strong> {{ member.name }}</p>
+      <p><strong>Spend:</strong> ₹{{ member.totalSpend }}</p>
+      <p><strong>Status:</strong> {{ member.status }}</p>
+      <hr />
+    </div>
+  </div>
+</div>
+
+  
