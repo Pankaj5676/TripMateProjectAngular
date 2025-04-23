@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Trip } from '../Class/trip';
 import { Member } from '../Class/member';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class TripService {
  // private apiUrl = 'http://localhost:8080/api/trips';
 //'http://localhost:8080/api';
 
-  private baseUrl = environment.apiBaseUrl;
+  private baseUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
