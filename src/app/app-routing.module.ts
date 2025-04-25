@@ -8,9 +8,11 @@ import { ManageTripComponent } from './Profile/manage-trip/manage-trip.component
 import { AddMembersComponent } from './Profile/add-members/add-members.component';
 import { authGuard } from './auth/auth.guard';
 import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
+  { path: 'reset-password', component: ResetPasswordComponent},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent ,canActivate: [authGuard]},
   { path: 'add-trip', component: AddTripComponent,canActivate: [authGuard] },

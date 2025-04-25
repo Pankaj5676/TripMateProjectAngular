@@ -15,7 +15,8 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { AddTripComponent } from './Profile/add-trip/add-trip.component';
 import { ManageTripComponent } from './Profile/manage-trip/manage-trip.component';
 import { AddMembersComponent } from './Profile/add-members/add-members.component';
-import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.component'
+import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TripSummaryComponent } from './Profile/trip-summary/trip-summary.compon
     AddTripComponent,
     ManageTripComponent,
     AddMembersComponent,
-    TripSummaryComponent
+    TripSummaryComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
